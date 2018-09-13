@@ -31,15 +31,15 @@ class Entity
      *
      * @return array
      */
-    protected function getSkeleton() : array
+    protected function getSkeleton()
     {
         return [
             'service' => [
                 'name'    => $this->config->get('appName'),
                 'version' => $this->config->get('appVersion'),
                 'framework' => [
-                    'name' => $this->config->get('framework') ?? '',
-                    'version' => $this->config->get('frameworkVersion') ?? '',
+                    'name' => $this->config->get('framework') ?: '',
+                    'version' => $this->config->get('frameworkVersion') ?: '',
                 ],
                 'language' => [
                     'name'    => 'php',

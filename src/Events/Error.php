@@ -24,7 +24,7 @@ class Error extends EventBean implements \JsonSerializable
      * @param Throwable $throwable
      * @param array $contexts
      */
-    public function __construct(\Throwable $throwable, array $contexts)
+    public function __construct($throwable, array $contexts)
     {
         parent::__construct($contexts);
         $this->throwable = $throwable;
@@ -35,7 +35,7 @@ class Error extends EventBean implements \JsonSerializable
      *
      * @return array
      */
-    public function jsonSerialize() : array
+    public function jsonSerialize()
     {
         return [
             'id'        => $this->getId(),
@@ -60,13 +60,13 @@ class Error extends EventBean implements \JsonSerializable
      *
      * @return array
      */
-    private function mapStacktrace() : array
+    private function mapStacktrace()
     {
         $stacktrace = [];
 
         foreach ($this->throwable->getTrace() as $trace) {
             $item = [
-              'function' => $trace['function'] ?? '(closure)'
+              'function' => $trace['function'] ?: '(closure)'
             ];
 
             if (isset($trace['line']) === true) {
@@ -83,7 +83,7 @@ class Error extends EventBean implements \JsonSerializable
             if (isset($trace['class']) === true) {
                 $item['module'] = $trace['class'];
             }
-            
+
             if (isset($trace['type']) === true) {
                 $item['type'] = $trace['type'];
             }

@@ -57,7 +57,7 @@ class Timer
      *
      * @return float
      */
-    public function getDuration() : float
+    public function getDuration()
     {
         if ($this->stoppedOn === null) {
             throw new NotStoppedException();
@@ -73,7 +73,7 @@ class Timer
      *
      * @return float
      */
-    public function getElapsed() : float
+    public function getElapsed()
     {
         if ($this->startedOn === null) {
             throw new NotStartedException();
@@ -91,7 +91,7 @@ class Timer
      *
      * @return float
      */
-    private function toMicro(float $num) : float
+    private function toMicro($num)
     {
         return $num * 1000000;
     }

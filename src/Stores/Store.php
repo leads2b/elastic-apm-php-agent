@@ -23,7 +23,7 @@ class Store implements \JsonSerializable
      *
      * @return array of \PhilKra\Events\EventBean
      */
-    public function list() : array
+    public function getList()
     {
         return $this->store;
     }
@@ -33,7 +33,7 @@ class Store implements \JsonSerializable
      *
      * @return bool
      */
-    public function isEmpty() : bool
+    public function isEmpty()
     {
         return empty($this->store);
     }
@@ -53,7 +53,7 @@ class Store implements \JsonSerializable
      *
      * @return array
      */
-    public function jsonSerialize() : array
+    public function jsonSerialize()
     {
         return $this->store;
     }

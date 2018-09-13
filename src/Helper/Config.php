@@ -38,9 +38,9 @@ class Config
      *
      * @return mixed: value | null
      */
-    public function get(string $key)
+    public function get($key)
     {
-        return ($this->config[$key]) ?? null;
+        return ($this->config[$key]) ?: null;
     }
 
     /**
@@ -48,7 +48,7 @@ class Config
      *
      * @return array
      */
-    public function asArray() : array
+    public function asArray()
     {
         return $this->config;
     }
@@ -58,7 +58,7 @@ class Config
      *
      * @return array
      */
-    private function getDefaultConfig() : array
+    private function getDefaultConfig()
     {
         return [
             'secretToken'    => null,

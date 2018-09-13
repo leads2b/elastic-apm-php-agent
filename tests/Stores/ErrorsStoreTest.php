@@ -13,7 +13,7 @@ final class ErrorsStoreTest extends TestCase {
 
   /**
    * @covers \PhilKra\Stores\ErrorsStoreTest::register
-   * @covers \PhilKra\Stores\ErrorsStoreTest::list
+   * @covers \PhilKra\Stores\ErrorsStoreTest::getList
    */
   public function testCaptureErrorExceptionAndListIt() {
     $store = new ErrorsStore();
@@ -24,7 +24,7 @@ final class ErrorsStoreTest extends TestCase {
 
     // Store the Error and Check that it's "stored"
     $store->register( $error );
-    $list = $store->list();
+    $list = $store->getList();
 
     $this->assertEquals( count( $list ), 1 );
 

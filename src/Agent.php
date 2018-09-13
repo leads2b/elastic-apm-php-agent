@@ -88,9 +88,9 @@ class Agent
         $this->config = new Config($config);
 
         // Init the Shared Context
-        $this->sharedContext['user']   = $sharedContext['user'] ?? [];
-        $this->sharedContext['custom'] = $sharedContext['custom'] ?? [];
-        $this->sharedContext['tags']   = $sharedContext['tags'] ?? [];
+        $this->sharedContext['user']   = $sharedContext['user'] ?: [];
+        $this->sharedContext['custom'] = $sharedContext['custom'] ?: [];
+        $this->sharedContext['tags']   = $sharedContext['tags'] ?: [];
 
         // Initialize Event Stores
         $this->transactionsStore = new TransactionsStore();
@@ -110,7 +110,7 @@ class Agent
      *
      * @return Transaction
      */
-    public function startTransaction(string $name): Transaction
+    public function startTransaction($name)
     {
         // Create and Store Transaction
         $this->transactionsStore->register(new Transaction($name, $this->sharedContext));
@@ -118,7 +118,7 @@ class Agent
         // Start the Transaction
         $transaction = $this->transactionsStore->fetch($name);
         $transaction->start();
-    
+
         return $transaction;
     }
 
@@ -132,7 +132,7 @@ class Agent
      *
      * @return void
      */
-    public function stopTransaction(string $name, array $meta = [])
+    public function stopTransaction($name, array $meta = [])
     {
         $this->getTransaction($name)->stop();
         $this->getTransaction($name)->setMeta($meta);
@@ -147,7 +147,7 @@ class Agent
      *
      * @return void
      */
-    public function getTransaction(string $name)
+    public function getTransaction($name)
     {
         $transaction = $this->transactionsStore->fetch($name);
         if ($transaction === null) {
@@ -162,11 +162,11 @@ class Agent
      *
      * @link http://php.net/manual/en/class.throwable.php
      *
-     * @param \Throwable $thrown
+     * @param $thrown
      *
      * @return void
      */
-    public function captureThrowable(\Throwable $thrown)
+    public function captureThrowable($thrown)
     {
         $this->errorsStore->register(new Error($thrown, $this->sharedContext));
     }
@@ -176,7 +176,7 @@ class Agent
      *
      * @return \PhilKra\Helper\Config
      */
-    public function getConfig() : \PhilKra\Helper\Config
+    public function getConfig()
     {
         return $this->config;
     }
@@ -186,7 +186,7 @@ class Agent
      *
      * @return bool
      */
-    public function send() : bool
+    public function send()
     {
         // Is the Agent enabled ?
         if ($this->config->get('active') === false) {

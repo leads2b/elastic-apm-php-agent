@@ -45,7 +45,7 @@ class Connector
      *
      * @return bool
      */
-    public function sendTransactions(TransactionsStore $store) : bool
+    public function sendTransactions(TransactionsStore $store)
     {
         $request = new Request(
             'POST',
@@ -65,7 +65,7 @@ class Connector
      *
      * @return bool
      */
-    public function sendErrors(ErrorsStore $store) : bool
+    public function sendErrors(ErrorsStore $store)
     {
         $request = new Request(
             'POST',
@@ -85,7 +85,7 @@ class Connector
      *
      * @return string
      */
-    private function getEndpoint(string $endpoint) : string
+    private function getEndpoint($endpoint)
     {
         return sprintf(
             '%s/%s/%s',
@@ -100,7 +100,7 @@ class Connector
      *
      * @return array
      */
-    private function getRequestHeaders() : array
+    private function getRequestHeaders()
     {
         // Default Headers Set
         $headers = [
