@@ -1,5 +1,5 @@
 {
-	"name": "surveygizmo/elastic-apm-php-agent",
+	"name": "leads2b/elastic-apm-php-agent",
 	"description": "A php 5.6 agent for Elastic APM",
 	"license": "MIT",
 	"require": {
@@ -28,12 +28,15 @@
 	"config": {
 		"optimize-autoloader": true
 	},
-	"authors": [{
-		"name": "Philip Krauss",
-		"email": "philip@philipkrauss.at",
-		"homepage": "https://github.com/philkra/elastic-apm-agent-php"
-	}, {
-		"name": "George Boot",
-		"email": "george@entryninja.com"
-	}]
+	"authors": [
+		{
+			"name": "Philip Krauss",
+			"email": "philip@philipkrauss.at",
+			"homepage": "https://github.com/philkra/elastic-apm-agent-php"
+		},
+		{
+			"name": "George Boot",
+			"email": "george@entryninja.com"
+		}
+	]
 }
