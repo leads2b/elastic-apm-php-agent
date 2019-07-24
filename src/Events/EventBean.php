@@ -173,7 +173,7 @@ class EventBean
      */
     final protected function getContext()
     {
-        $headers = getallheaders();
+        $headers = array_change_key_case(getallheaders());
         $http_or_https = isset($_SERVER['HTTPS']) ? 'https' : 'http';
         $http_version = null;
         if (isset($_SERVER['SERVER_PROTOCOL'])) {
@@ -200,8 +200,8 @@ class EventBean
                     'full' => $http_or_https . '://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']
                 ],
                 'headers' => [
-                    'user-agent' => $headers['User-Agent'] ?: '',
-                    'cookie'     => $headers['Cookie'] ?: ''
+                    'user-agent' => $headers['user-agent'] ?: '',
+                    'cookie'     => $headers['cookie'] ?: ''
                 ],
                 'env' => $_SERVER,
             ]
