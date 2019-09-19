@@ -69,6 +69,16 @@ class Transaction extends EventBean implements \JsonSerializable
     }
 
     /**
+     * Starting Timestamp
+     *
+     * @return double
+     */
+    public function getStartedOn()
+    {
+        return $this->timer->getStartedOn();
+    }
+
+    /**
      * Stop the Transaction
      *
      * @param integer|null $duration
