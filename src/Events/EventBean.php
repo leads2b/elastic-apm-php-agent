@@ -197,7 +197,7 @@ class EventBean
                     'hostname' => $_SERVER['SERVER_NAME'] ?: '',
                     'port'     => $_SERVER['SERVER_PORT'] ?: '',
                     'pathname' => $_SERVER['SCRIPT_NAME'] ?: '',
-                    'search'   => '?' . (($_SERVER['QUERY_STRING'] ? substr($_SERVER['QUERY_STRING'], 0, 1024) : '') ?: ''),
+                    'search'   => '?' . (($_SERVER['QUERY_STRING'] ? substr($_SERVER['QUERY_STRING'], 0, 1023) : '') ?: ''),
                     'full' => substr($http_or_https . '://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'], 0, 1024)
                 ],
                 'headers' => [
