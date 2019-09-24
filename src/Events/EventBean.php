@@ -201,8 +201,8 @@ class EventBean
                     'full' => substr($http_or_https . '://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'], 0, 1024)
                 ],
                 'headers' => [
-                    'user-agent' => $headers['user-agent'] ?: '',
-                    'cookie'     => $headers['cookie'] ?: ''
+                    'user-agent' => isset($headers['user-agent']) ? $headers['user-agent'] : '',
+                    'cookie'     => isset($headers['cookie']) ? $headers['cookie'] : ''
                 ],
                 'env' => $_SERVER,
             ]
