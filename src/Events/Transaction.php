@@ -39,11 +39,18 @@ class Transaction extends EventBean implements \JsonSerializable
     ];
 
     /**
-     * The spams for the transaction
+     * The spans for the transaction
      *
      * @var array
      */
     private $spans = [];
+
+    /**
+     * The request body for the transaction
+     *
+     * @var string
+     */
+    private $body;
 
     /**
     * Create the Transaction
@@ -151,25 +158,55 @@ class Transaction extends EventBean implements \JsonSerializable
     }
 
     /**
+     * Set the Body for the transacton
+     *
+     * @param string $body
+     *
+     * @return void
+     */
+    public function setBody($body)
+    {
+        $this->body = $body;
+    }
+
+    /**
+     * Get the Body from the transaction
+     *
+     * @return array
+     */
+    private function getBody()
+    {
+        return $this->body;
+    }
+
+    /**
     * Serialize Transaction Event
     *
     * @return array
     */
     public function jsonSerialize()
     {
-        return [
-          'id'        => $this->getId(),
-          'timestamp' => $this->getTimestamp(),
-          'name'      => $this->getTransactionName(),
-          'duration'  => $this->summary['duration'],
-          'type'      => $this->getMetaType(),
-          'result'    => $this->getMetaResult(),
-          'context'   => $this->getContext(),
-          'spans'     => $this->getSpans(),
-          'processor' => [
-              'event' => 'transaction',
-              'name'  => 'transaction',
-          ]
-      ];
+        $data = [
+            'id'        => $this->getId(),
+            'timestamp' => $this->getTimestamp(),
+            'name'      => $this->getTransactionName(),
+            'duration'  => $this->summary['duration'],
+            'type'      => $this->getMetaType(),
+            'result'    => $this->getMetaResult(),
+            'context'   => $this->getContext(),
+            'spans'     => $this->getSpans(),
+            'processor' => [
+                'event' => 'transaction',
+                'name'  => 'transaction',
+            ]
+        ];
+
+        $body = $this->getBody();
+
+        if ($body !== null) {
+            $data['context']['request']['body'] = $body;
+        }
+
+        return $data;
     }
 }
