@@ -40,7 +40,7 @@ class Config
      */
     public function get($key)
     {
-        return ($this->config[$key]) ?: null;
+        return isset($this->config[$key]) ? $this->config[$key] : null;
     }
 
     /**
